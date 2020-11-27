@@ -1,0 +1,18 @@
+query Posts(
+  $limit: Int!
+  $cursor: String
+  $keyword: String
+  $creatorId: Int
+) {
+  posts(
+    cursor: $cursor
+    limit: $limit
+    keyword: $keyword
+    creatorId: $creatorId
+  ) {
+    hasMore
+    posts {
+      ...PostSnippet
+    }
+  }
+}
