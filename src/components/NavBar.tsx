@@ -6,7 +6,6 @@ import { useLogoutMutation, useMeQuery } from "../generated/graphql";
 import { isServer } from "../utils/isServer";
 import { SearchBar } from "./SearchBar";
 
-
 interface NavBarProps {}
 
 export const NavBar: React.FC<NavBarProps> = ({}) => {
@@ -23,19 +22,30 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
   } else if (!data?.me) {
     body = (
       <>
-        <NextLink href="/login">
-          <Link mr={2}>Login</Link>
-        </NextLink>
-        <NextLink href="/register">
-          <Link mr={2}>Register</Link>
-        </NextLink>
+        <Button variant="outline" borderColor="#5c9dc0" color="#5c9dc0" mr={4}>
+          <NextLink href="/login">
+            <Link>Login</Link>
+          </NextLink>
+        </Button>
+
+        <Button backgroundColor="#5c9dc0" color="white">
+          <NextLink href="/register">
+            <Link>Register</Link>
+          </NextLink>
+        </Button>
       </>
     );
   } else {
     body = (
       <Flex align="center">
         <NextLink href="/create-post">
-          <Button as={Link} mr={4}>
+          <Button
+            variant="outline"
+            borderColor="#5c9dc0"
+            color="#5c9dc0"
+            as={Link}
+            mr={4}
+          >
             create post
           </Button>
         </NextLink>
@@ -45,6 +55,7 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
             await logout();
             router.reload();
           }}
+          color="#02699c"
           variant="link"
           isLoading={logoutFetching}
         >
@@ -54,16 +65,33 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
     );
   }
   return (
-    <Flex zIndex={1} position="sticky" top={0} bg="#B3B6B7" p={4}>
+    <Flex
+      mb={8}
+      zIndex={1}
+      position="sticky"
+      top={0}
+      style={{ borderBottom: "1px solid #edeff1" }}
+      bg="white"
+      p={4}
+    >
       <Flex flex={1} m="auto" align="center" maxW={800}>
-      
         <NextLink href="/">
           <Link>
-            <Heading><IconButton aria-label="Search database" size="lg" icon="chat" isRound /> Hotts</Heading>
+            <Heading fontSize={28}>
+              <IconButton
+                aria-label="Search database"
+                size="lg"
+                icon="chat"
+                backgroundColor="#02699c"
+                color="white"
+                isRound
+              />{" "}
+              HOTTS
+            </Heading>
           </Link>
         </NextLink>
         <Box ml="auto">
-          <SearchBar/>
+          <SearchBar />
         </Box>
         <Box ml={"auto"}>{body}</Box>
       </Flex>

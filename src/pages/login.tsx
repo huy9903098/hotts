@@ -15,51 +15,54 @@ export const Login: React.FC<{}> = ({}) => {
   const [, login] = useLoginMutation();
   return (
     <Wrapper variant="small">
-      <Formik
-        initialValues={{ usernameOrEmail: "", password: "" }}
-        onSubmit={async (values, { setErrors }) => {
-          const response = await login(values);
-          if (response.data?.login.errors) {
-            setErrors(toErrorMap(response.data?.login.errors));
-          } else if (response.data?.login.user) {
-            router.push(
-              typeof router.query.next === "string" ? router.query.next : "/"
-            );
-          }
-        }}
-      >
-        {({ isSubmitting }) => (
-          <Form>
-            <InputField
-              name="usernameOrEmail"
-              label="Username Or Email"
-              placeholder="usernameOrEmail"
-            />
-            <Box mt={4}>
+      <Box pt={8}>
+        <Formik
+          initialValues={{ usernameOrEmail: "", password: "" }}
+          onSubmit={async (values, { setErrors }) => {
+            const response = await login(values);
+            if (response.data?.login.errors) {
+              setErrors(toErrorMap(response.data?.login.errors));
+            } else if (response.data?.login.user) {
+              router.push(
+                typeof router.query.next === "string" ? router.query.next : "/"
+              );
+            }
+          }}
+        >
+          {({ isSubmitting }) => (
+            <Form>
               <InputField
-                name="password"
-                label="Password"
-                placeholder="password"
-                type="password"
+                name="usernameOrEmail"
+                label="Username Or Email"
+                placeholder="usernameOrEmail"
               />
-            </Box>
-            <Flex mt={2}>
-              <NextLink href="/forgot-password">
-                <Link ml="auto">forgot password?</Link>
-              </NextLink>
-            </Flex>
+              <Box mt={4}>
+                <InputField
+                  name="password"
+                  label="Password"
+                  placeholder="password"
+                  type="password"
+                />
+              </Box>
+              <Flex mt={2}>
+                <NextLink href="/forgot-password">
+                  <Link ml="auto">forgot password?</Link>
+                </NextLink>
+              </Flex>
 
-            <Button
-              type="submit"
-              variantColor="teal"
-              mt={4}
-              isLoading={isSubmitting}
-            >
-              Login
-            </Button>
-          </Form>
-        )}
-      </Formik>
+              <Button
+                type="submit"
+                backgroundColor="#02699c"
+                color="white"
+                mt={4}
+                isLoading={isSubmitting}
+              >
+                Login
+              </Button>
+            </Form>
+          )}
+        </Formik>
+      </Box>
     </Wrapper>
   );
 };

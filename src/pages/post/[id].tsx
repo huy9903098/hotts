@@ -84,7 +84,7 @@ const Post = ({}) => {
     <>
       <Layout>
         <Stack mb={4} spacing={8}>
-          <Flex shadow="md" p={5} borderWidth="1px">
+          <Flex shadow="md" bg="white" p={5} borderWidth="1px">
             <UpdootSection
               post={{
                 id: data.post.id,

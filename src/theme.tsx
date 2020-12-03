@@ -10,7 +10,11 @@ const theme = {
     ...chakraTheme.colors,
     black: "#16161D",
   },
-  fonts,
+  fonts:{
+    body: "Arial, sans-serif",
+    heading:"Arial, sans-serif",
+    mono: "Arial, sans-serif"
+  },
   breakpoints,
   icons: {
     ...chakraTheme.icons,
