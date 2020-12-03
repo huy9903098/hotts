@@ -33,6 +33,7 @@ const CreatePost: React.FC<{}> = ({}) => {
                 name="text"
                 label="Body"
                 placeholder="text..."
+                height={300}
               />
             </Box>
 

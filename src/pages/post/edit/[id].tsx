@@ -64,6 +64,7 @@ const EditPost = ({}) => {
               type="submit"
               backgroundColor="#02699c"
               color="white"
+              height={300}
               mt={4}
               isLoading={isSubmitting}
             >
