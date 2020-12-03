@@ -18,7 +18,7 @@ export const PostsDisplay: React.FC<PostsDisplayProps> = ({
   creatorId,
 }) => {
   const [variables, setVariables] = useState({
-    limit: 15,
+    limit: 10,
     cursor: null as null | string,
     keyword,
     creatorId: null as null | number,
