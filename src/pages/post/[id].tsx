@@ -146,7 +146,7 @@ const Post = ({}) => {
 
                         <Button
                           type="submit"
-                          backgroundColor="#5c9dc0"
+                          backgroundColor="#02699c"
                           color="white"
                           mt={4}
                           isLoading={isSubmitting}
