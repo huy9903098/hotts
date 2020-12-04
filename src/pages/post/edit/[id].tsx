@@ -57,6 +57,7 @@ const EditPost = ({}) => {
                 name="text"
                 label="Body"
                 placeholder="text..."
+                height={300}
               />
             </Box>
 
@@ -64,7 +65,6 @@ const EditPost = ({}) => {
               type="submit"
               backgroundColor="#02699c"
               color="white"
-              height={300}
               mt={4}
               isLoading={isSubmitting}
             >

@@ -9,6 +9,7 @@ import {
 } from "urql";
 import { pipe, tap } from "wonka";
 import {
+  DeleteCommentMutationVariables,
   DeletePostMutationVariables,
   LoginMutation,
   LogoutMutation,
@@ -44,6 +45,7 @@ export const commentPagination = (): Resolver => {
       return undefined;
     }
     const fieldKey = `${fieldName}(${stringifyVariables(fieldArgs)})`;
+    // console.log("fieldKey", fieldKey);
 
     const isItInTheCache = cache.resolve(
       cache.resolveFieldByKey(entityKey, fieldKey) as string,
@@ -167,7 +169,7 @@ export const createUrqlClient = (ssrExchange: any, ctx: any) => {
             cookie,
           }
         : undefined,
-    }, //send cookie -> need cookies to register 
+    }, //send cookie -> need cookies to register
     exchanges: [
       dedupExchange,
       cacheExchange({
@@ -189,6 +191,7 @@ export const createUrqlClient = (ssrExchange: any, ctx: any) => {
                 id: (args as DeletePostMutationVariables).id,
               });
             },
+
             vote: (_result, args, cache, info) => {
               const { postId, value } = args as VoteMutationVariables;
               const data = cache.readFragment(
@@ -254,8 +257,10 @@ export const createUrqlClient = (ssrExchange: any, ctx: any) => {
               invalidateAllComments(cache);
             },
             deleteComment: (_result, args, cache, info) => {
-              invalidateAllPosts(cache);
-              invalidateAllComments(cache);
+              cache.invalidate({
+                __typename: "Comment",
+                id: (args as DeleteCommentMutationVariables).id,
+              });
             },
             register: (_result, args, cache, info) => {
               betterUpdateQuery<RegisterMutation, MeQuery>(

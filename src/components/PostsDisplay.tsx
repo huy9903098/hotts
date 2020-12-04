@@ -48,7 +48,7 @@ export const PostsDisplay: React.FC<PostsDisplayProps> = ({
       {!data && fetching ? (
         <div>Loading...</div>
       ) : (
-        <Stack spacing={8}>
+        <Stack spacing={8} pb={10}>
           {data!.posts.posts.length > 0
             ? data!.posts.posts.map((p) => {
                 return p && p.id !== exceptionId ? (
