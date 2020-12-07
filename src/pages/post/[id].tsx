@@ -142,7 +142,6 @@ const Post = ({}) => {
                     if (!error) {
                       router.push(`/post/${intId}`);
                       resetForm();
-                      router.reload();
                     }
                   }}
                 >
